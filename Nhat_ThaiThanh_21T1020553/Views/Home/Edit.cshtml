@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+@using Nhat_ThaiThanh_21T1020553.ViewModels
+@model AuthorViewModel
+<form method="post" asp-action="Edit" id="authorForm">
+    <div class="row mb-2">
+        <label class="col-2">Tên Lớp học</label>
+        <input  class="col-10" type="text" asp-for="AuthorResponse.Name" value="@Model.AuthorResponse.Name" />
+    </div>
+    <div class="row mb-2">
+        <label class="col-2">Tên Lớp học</label>
+        <input class="col-10" type="date" asp-for="AuthorResponse.BirthDate" value="@Model.AuthorResponse.BirthDate.ToString("yyyy-MM-dd")" />
+
+    </div>
+    <div>
+        <input  type="hidden" asp-for="AuthorResponse.AuthorId" value="@Model.AuthorResponse.AuthorId" />
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+        <button type="submit" class="btn btn-success">Đồng ý</button>
+    </div>
+</form>
+

@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@using Nhat_ThaiThanh_21T1020553.ViewModels
+@model AuthorViewModel
+<form method="post" asp-action="Add">
+    <div class="row mb-2">
+        <label class="col-2">Tên tác giả</label>
+        <input class="col-10" type="text" asp-for="AuthorResponse.Name" />
+    </div>
+    <div class="row mb-2">
+        <label class="col-2">Ngày sinh</label>
+        <input class="col-10" type="date" asp-for="AuthorResponse.BirthDate"/>
+    </div>
+    <div>   
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+        <button type="submit" class="btn btn-success">Đồng ý</button>
+    </div>
+</form>

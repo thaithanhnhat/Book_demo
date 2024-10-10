@@ -1,0 +1,62 @@
+﻿@using Nhat_ThaiThanh_21T1020553.ViewModels
+@model AuthorViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="get">
+    <div class="mb-3 row">
+        <label for="keyWord" class="col-sm-2 col-form-label">Tìm kiếm</label>
+        <div class="col-sm-10">
+            <input value="@Model.keyWord" type="text" name="keyWord" class="form-control" id="keyWord">
+        </div>
+    </div>
+</form>
+<a asp-action="Add" asp-controller="Home" class="bi bi-plus-square-fill btn btn-outline-success" style="margin:20px 20px">Thêm</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Mã</th>
+            <th scope="col">Tên tác giả</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var au in Model.ListAuthor)
+        {
+            <tr>
+                <td>@au.AuthorId</td>
+                <td>@au.Name</td>
+                <td>@au.BirthDate.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <div class="d-flex">
+                        <a asp-controller="Book" asp-route-idAuthor="@au.AuthorId" class="btn btn-primary mb-2"> Danh sách sách của tác giả</a>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete_@au.AuthorId">Xóa</button>
+                        <a asp-action="Edit" asp-controller="Home" asp-route-id="@au.AuthorId" class="bi bi-pencil btn btn-primary"></a>
+                    </div>
+
+                    <div class="modal fade" id="delete_@au.AuthorId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thông báo</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có chắc là muốn xóa lớp "@au.Name" không?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bỏ qua</button>
+                                    <a asp-action="Delete" asp-route-id="@au.AuthorId" class="btn btn-primary">Đồng ý</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

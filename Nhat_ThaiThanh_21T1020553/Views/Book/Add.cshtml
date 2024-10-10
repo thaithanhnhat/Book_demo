@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@using Nhat_ThaiThanh_21T1020553.ViewModels
+@model BookViewModel
+<form method="post" asp-action="Add">
+    <div class="row mb-2">
+        <label class="col-2">Tiêu đề sách</label>
+        <input class="col-10" type="text" asp-for="BookResponse.Title" />
+    </div>
+    <div class="row mb-2">
+        <label class="col-2">Ngày sản xuất</label>
+        <input class="col-10" type="date" asp-for="BookResponse.PublicationDate"/>
+    </div>
+    <div>
+        <input type="hidden" asp-for="BookResponse.AuthorId" value="@Model.maAuthor" />
+        <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+        <button type="submit" class="btn btn-success">Đồng ý</button>
+    </div>
+</form>
